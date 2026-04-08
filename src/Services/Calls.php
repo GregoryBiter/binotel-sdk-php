@@ -12,7 +12,7 @@ class Calls extends AbstractService
         ], $extraParams);
 
         if ($callerIdForEmployee !== null) {
-            $params['callerIdForEmployee'] = $callerIdForEmployee . $externalNumber;
+            $params['callerIdForEmployee'] = $callerIdForEmployee;
         }
 
         return $this->request('calls/internal-number-to-external-number', $params);
