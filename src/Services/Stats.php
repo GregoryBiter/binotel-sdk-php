@@ -27,6 +27,13 @@ class Stats extends AbstractService
         ]);
     }
 
+    public function allOutgoingCallsSince(int $timestamp): array
+    {
+        return $this->request('stats/all-outgoing-calls-since', [
+            'timestamp' => $timestamp,
+        ]);
+    }
+
     public function onlineCalls(): array
     {
         return $this->request('stats/online-calls');
@@ -42,6 +49,14 @@ class Stats extends AbstractService
     public function listOfCallsForPeriod(int $startTime, int $stopTime): array
     {
         return $this->request('stats/list-of-calls-for-period', [
+            'startTime' => $startTime,
+            'stopTime' => $stopTime,
+        ]);
+    }
+
+    public function calltrackingCallsForPeriod(int $startTime, int $stopTime): array
+    {
+        return $this->request('stats/calltracking-calls-for-period', [
             'startTime' => $startTime,
             'stopTime' => $stopTime,
         ]);

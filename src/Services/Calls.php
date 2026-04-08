@@ -33,6 +33,20 @@ class Calls extends AbstractService
         return $this->request('calls/external-number-to-external-number', $params);
     }
 
+    public function externalToIncomingCall(string $externalNumber, string $phoneNumber, int $limitCallTime = 0): array
+    {
+        $params = [
+            'externalNumber' => $externalNumber,
+            'phoneNumber' => $phoneNumber,
+        ];
+
+        if ($limitCallTime > 0) {
+            $params['limitCallTime'] = $limitCallTime;
+        }
+
+        return $this->request('calls/external-number-to-incoming-call', $params);
+    }
+
     public function attendedTransfer(string $generalCallID, string $externalNumber): array
     {
         return $this->request('calls/attended-call-transfer', [
