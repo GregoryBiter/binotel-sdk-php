@@ -1,6 +1,5 @@
 {
     "name": "binotel/sdk",
-    "version": "0.0.3",
     "description": "A modern PHP SDK for Binotel API 4.0.0",
     "type": "library",
     "license": "MIT",
