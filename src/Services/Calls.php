@@ -4,12 +4,18 @@ namespace Binotel\Sdk\Services;
 
 class Calls extends AbstractService
 {
-    public function internalToExternal(string $internalNumber, string $externalNumber): array
+    public function internalToExternal(string $internalNumber, string $externalNumber, ?int $callerIdForEmployee = null, array $extraParams = []): array
     {
-        return $this->request('calls/internal-number-to-external-number', [
+        $params = array_merge([
             'internalNumber' => $internalNumber,
             'externalNumber' => $externalNumber,
-        ]);
+        ], $extraParams);
+
+        if ($callerIdForEmployee !== null) {
+            $params['callerIdForEmployee'] = $callerIdForEmployee . $externalNumber;
+        }
+
+        return $this->request('calls/internal-number-to-external-number', $params);
     }
 
     public function externalToExternal(string $externalNumber1, string $externalNumber2, string $phoneNumber, int $limitCallTime = 0): array
