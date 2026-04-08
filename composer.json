@@ -1,0 +1,22 @@
+{
+    "name": "binotel/sdk",
+    "description": "A modern PHP SDK for Binotel API 4.0.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GregoryBiter",
+            "email": "gregorybiter@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Binotel\\Sdk\\": "src/"
+        }
+    }
+}

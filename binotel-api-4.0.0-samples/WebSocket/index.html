@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Testing Binotel WebSocket</title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		/**
+		 * For node.js please use https://github.com/websockets/ws
+		 */
+
+		var wsConnection = new window.WebSocket('wss://ws.binotel.com:9002');
+
+		wsConnection.onopen = function() {  
+			console.log('Socket Status: ', wsConnection.readyState, ' (open)');
+		}
+
+		wsConnection.onmessage = function(msg) {  
+			console.log('%c Received: %s', "color: #46af91;", msg.data);
+
+			if (msg.data.indexOf('Connected to Binotel WebSocket. Please, authorise!') !== -1) {
+					wsConnection.send(JSON.stringify({
+					task: 'authLikeService',
+					key: 'ed6a7a-3be3fr3',
+					secret: 'a85b9b-oe2hd1-d83bb-hef50n-o33br7wj'
+				}));
+			}
+		}
+
+		wsConnection.onclose = function() {  
+			console.log('Socket Status: ', wsConnection.readyState, ' (Closed)')
+		}
+	</script>
+</head>
+<body>
+	<div>Testing Binotel WebSocket!<br>Please, open: Developer tools -> Console</div>
+</body>
+</html>
